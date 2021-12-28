@@ -22,7 +22,7 @@ export default function PlasmicLoaderPage(props: {
       <Head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-731NQSM89E"></script>
         <script dangerouslySetInnerHTML={{
-          _html: `
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
