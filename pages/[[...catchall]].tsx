@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PlasmicComponent } from "@plasmicapp/loader-nextjs";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 
 import {
   ComponentRenderData,
@@ -17,12 +18,26 @@ export default function PlasmicLoaderPage(props: {
     return <Error statusCode={404} />;
   }
   return (
-    <PlasmicRootProvider
-      loader={PLASMIC}
-      prefetchedData={plasmicData}
-    >
-      <PlasmicComponent component={plasmicData.entryCompMetas[0].name} />
-    </PlasmicRootProvider>
+    <>
+      <Head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-731NQSM89E"></script>
+        <script dangerouslySetInnerHTML={{
+          _html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-731NQSM89E');
+          `
+        }}/>
+      </Head>
+      <PlasmicRootProvider
+        loader={PLASMIC}
+        prefetchedData={plasmicData}
+      >
+        <PlasmicComponent component={plasmicData.entryCompMetas[0].name} />
+      </PlasmicRootProvider>
+    </>
   );
 }
 
